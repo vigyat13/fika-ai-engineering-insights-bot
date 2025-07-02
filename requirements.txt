@@ -1,0 +1,14 @@
+langchain==0.3.26
+langchain_core==0.3.67
+langchain_groq==0.3.5
+langchain_openai==0.3.27
+langgraph==0.5.0
+matplotlib==3.10.3
+networkx==3.4.2  # ✅ works with Python 3.10
+
+numpy==1.24.4
+python-dotenv==1.1.1
+Requests==2.32.4
+schedule==1.2.2
+scikit_learn==1.7.0
+slack_bolt==1.23.0

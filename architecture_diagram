@@ -1,0 +1,28 @@
+digraph "Fika MVP Architecture" {
+	graph [fontcolor="#2D3436" fontname="Sans-Serif" fontsize=15 label="Fika MVP Architecture" nodesep=0.60 pad=2.0 rankdir=LR ranksep=0.75 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	"6f1c12d90596422d92d836ad60ae7764" [label="Developer / Manager" height=1.9 image="C:\Users\KIIT\anaconda_projects\New folder\Lib\site-packages\resources/onprem/client\users.png" shape=none]
+	subgraph "cluster_GitHub Data Pipeline" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="GitHub Data Pipeline" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		d420bec32aaa4c24a0ab23f98e2e2444 [label="GitHub Repo" height=1.9 image="C:\Users\KIIT\anaconda_projects\New folder\Lib\site-packages\resources/onprem/vcs\github.png" shape=none]
+		"9ba4802ad99a4971acca4fd5110ca1e1" [label="Data Harvester Agent" height=1.9 image="C:\Users\KIIT\anaconda_projects\New folder\Lib\site-packages\resources/programming/language\python.png" shape=none]
+	}
+	subgraph "cluster_LangGraph Agents" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="LangGraph Agents" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"93308c92c4974c96ac32ad26c3db36a8" [label="Diff Analyst Agent" height=1.9 image="C:\Users\KIIT\anaconda_projects\New folder\Lib\site-packages\resources/programming/language\python.png" shape=none]
+		"1c2b82eb0a1d460a9c3d6c2ab80b1f51" [label="Insight Narrator Agent" height=1.9 image="C:\Users\KIIT\anaconda_projects\New folder\Lib\site-packages\resources/programming/language\python.png" shape=none]
+	}
+	subgraph "cluster_Slack Bot Interface" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Slack Bot Interface" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"3da444109c6845d3a48844457167ae8c" [label="/dev-report" height=1.9 image="C:\Users\KIIT\anaconda_projects\New folder\Lib\site-packages\resources/programming/flowchart\input-output.png" shape=none]
+		"93e4041737d04e3c9b03ab23fe261925" [label="Slack Bot" height=1.9 image="./icons/slack.png" shape=none]
+	}
+	d420bec32aaa4c24a0ab23f98e2e2444 -> "9ba4802ad99a4971acca4fd5110ca1e1" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"9ba4802ad99a4971acca4fd5110ca1e1" -> "93308c92c4974c96ac32ad26c3db36a8" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"93308c92c4974c96ac32ad26c3db36a8" -> "1c2b82eb0a1d460a9c3d6c2ab80b1f51" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"6f1c12d90596422d92d836ad60ae7764" -> "3da444109c6845d3a48844457167ae8c" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"3da444109c6845d3a48844457167ae8c" -> "93e4041737d04e3c9b03ab23fe261925" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"93e4041737d04e3c9b03ab23fe261925" -> "1c2b82eb0a1d460a9c3d6c2ab80b1f51" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"1c2b82eb0a1d460a9c3d6c2ab80b1f51" -> "93e4041737d04e3c9b03ab23fe261925" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+}

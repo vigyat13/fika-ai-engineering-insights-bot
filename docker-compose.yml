@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: fika-mvp-final
+    volumes:
+      - .:/app
+    working_dir: /app
+    env_file:
+      - .env
+    entrypoint: ["python", "bot/slack_bot.py"]

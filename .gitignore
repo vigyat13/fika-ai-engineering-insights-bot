@@ -1,0 +1,27 @@
+# Secrets
+.env
+*.env
+
+# Bytecode
+__pycache__/
+*.py[cod]
+
+# Logs and temporary
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+
+# Compiled
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# OS-specific
+Thumbs.db
+.vscode/
+.idea/
+
