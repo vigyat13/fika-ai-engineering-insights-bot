@@ -34,9 +34,7 @@ This is a submission for the **FIKA AI Research Engineering-Productivity Intelli
 
 ---
 
-## 🧠 Architecture Diagram
 
-> \[📎 Insert Architecture Diagram Image Here — LangGraph Nodes, Slack, GitHub, Chart Output, Storage Layer]
 
 ### 👇 LangGraph Flow
 
@@ -58,7 +56,7 @@ SlackBotOutput
 
 This diagram shows the LangGraph orchestration pipeline and agent transitions:
 
-![LangGraph Agent Flow](architecture_diagram.png)
+![LangGraph Agent Flow](langgraph_architecture.png)
 
 
 ## 🛠️ Tech Stack
