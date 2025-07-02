@@ -16,13 +16,18 @@ def get_last_week_range():
     last_monday = today - timedelta(days=today.weekday() + 7)
     return last_monday.strftime("%Y-%m-%d")
 
-def run_pipeline():
+def run_pipeline(owner=None, repo=None):
     print("🔁 Running LangGraph pipeline via Slack bot...")
 
-    # Run LangGraph pipeline
+    # Fallback to .env if not provided
+    owner = owner or os.getenv("GITHUB_OWNER", "vigyat13")
+    repo = repo or os.getenv("GITHUB_REPO", "Nivaan-ChatBot")
+
+    print(f"📂 Repo: {owner}/{repo}")
+
     result = graph.invoke({
-        "owner": "vigyat13",
-        "repo": "Nivaan-ChatBot"
+        "owner": owner,
+        "repo": repo
     })
 
     summary_raw = result.get("summary", "[No summary generated]")
@@ -42,3 +47,4 @@ def run_pipeline():
         "summary": summary,
         "chart_base64": chart_base64
     }
+

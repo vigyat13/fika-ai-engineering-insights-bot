@@ -4,7 +4,7 @@ import traceback
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from dotenv import load_dotenv
-from langgraph_pipeline import run_pipeline  # Ensure this file exists and works
+from langgraph_pipeline import run_pipeline  # ✅ Must accept owner, repo args
 
 # Load environment variables from .env
 load_dotenv()
@@ -15,16 +15,29 @@ SLACK_APP_TOKEN = os.getenv("SLACK_APP_TOKEN")
 app = App(token=SLACK_BOT_TOKEN)
 
 @app.command("/dev-report")
-def handle_dev_report(ack, body, respond):
-    ack()  # Acknowledge immediately
+def handle_dev_report(ack, body, respond, command):
+    ack()  # Acknowledge the command early
 
     user = body.get("user_name")
     channel_id = body.get("channel_id")
-    print(f"✅ /dev-report command received from @{user} in channel {channel_id}")
+    text = command.get("text", "").strip()  # Extract command text
+
+    print(f"✅ /dev-report command received from @{user} in channel {channel_id} with text: '{text}'")
 
     try:
+        # Parse optional owner and repo from text
+        if text:
+            parts = text.split()
+            owner = parts[0] if len(parts) > 0 else os.getenv("GITHUB_OWNER", "vigyat13")
+            repo = parts[1] if len(parts) > 1 else os.getenv("GITHUB_REPO", "Nivaan-ChatBot")
+        else:
+            owner = os.getenv("GITHUB_OWNER", "vigyat13")
+            repo = os.getenv("GITHUB_REPO", "Nivaan-ChatBot")
+
+        respond(f"🔍 Generating report for *{owner}/{repo}*...")
+
         # Run LangGraph pipeline
-        result = run_pipeline()
+        result = run_pipeline(owner=owner, repo=repo)
         summary = result.get("summary", "")
         chart_base64 = result.get("chart_base64", "")
 
@@ -40,10 +53,10 @@ def handle_dev_report(ack, body, respond):
 
         # Upload to Slack
         response = app.client.files_upload_v2(
-            channel=channel_id,  # ✅ correct key
+            channel=channel_id,
             file=chart_path,
             filename="churn_chart.png",
-            title="Developer Productivity Report",
+            title=f"Developer Report: {owner}/{repo}",
             initial_comment=summary
         )
 
@@ -58,3 +71,4 @@ if __name__ == "__main__":
     print("🚀 Starting Fika MVP Slack bot...")
     handler = SocketModeHandler(app, SLACK_APP_TOKEN)
     handler.start()
+
