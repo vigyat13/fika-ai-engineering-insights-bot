@@ -75,14 +75,15 @@ This diagram shows the LangGraph orchestration pipeline and agent transitions:
 ## 🚀 Quickstart
 
 ```bash
-git clone https://github.com/yourusername/fika-mvp
-cd fika-mvp
+git clone https://github.com/vigyat13/FIKA-CHALLENGE
+cd FIKA-CHALLENGE
 
 # Copy and fill the required secrets
 cp .env.example .env
 
 # Build and run the app
-docker compose up
+docker compose up --build
+
 ```
 
 ### ✅ Slack Bot Commands
@@ -142,12 +143,6 @@ python main.py --owner vigyat13 --repo Nivaan-ChatBot
 * Add code reviews + CI checks.
 
 📊 Attached chart: churn\_chart.png
-
----
-
-## 📽️ Loom Demo
-
-> \[📎 Link to Loom video demo here — showing `/dev-report` in Slack and architecture walkthrough]
 
 ---
 
